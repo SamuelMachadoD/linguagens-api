@@ -2,22 +2,25 @@ package br.com.samuel.linguagens.api;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
 	
-	private List<Linguagem> linguagens = 
-			List.of(
-					new Linguagem("Java","https://raw.githubusercontent.com/abrahamcalf/programming-languages-logos/master/src/java/java_256x256.png", 1),
-					new Linguagem("PHP","https://raw.githubusercontent.com/abrahamcalf/programming-languages-logos/master/src/php/php_256x256.png", 2)
-			);
+	@Autowired
+	private Repository repositorio;
 	
 	@GetMapping("/linguagens")
 	public List<Linguagem> linguagens() {
-		return linguagens;
+		return repositorio.findAll();
 	}
 	
-	
+	@PostMapping("/linguagens")
+	public Linguagem cadastrar(@RequestBody Linguagem linguagem) {
+		return repositorio.save(linguagem);
+	}
 }
