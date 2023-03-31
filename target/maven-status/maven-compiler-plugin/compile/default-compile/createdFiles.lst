@@ -1,0 +1,4 @@
+br\com\samuel\linguagens\api\object\Linguagem.class
+br\com\samuel\linguagens\api\LinguagensApiApplication.class
+br\com\samuel\linguagens\api\Repository.class
+br\com\samuel\linguagens\api\controller\Controller.class
